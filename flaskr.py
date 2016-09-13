@@ -1,11 +1,12 @@
 # all the imports
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, Blueprint
 import sqlite3
 from contextlib import closing
 import os
 
 # create our little application :-)
 app = Flask(__name__)
+
 
 # load default config and override config from an environment variable
 app.config.update(dict(
