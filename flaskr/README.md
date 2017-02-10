@@ -1,3 +1,3 @@
-# Blog created by flask
+python2.7
 
 Official Tutorial
