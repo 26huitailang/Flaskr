@@ -37,7 +37,7 @@ def init_db():
 def initdb_command():
     """Initializes the database."""
     init_db()
-    print 'Initialized the database.'
+    print('Initialized the database.')
 
 
 def get_db():
@@ -97,4 +97,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
