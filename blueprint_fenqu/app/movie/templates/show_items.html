@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <ul class="entries">
+        {% for item in items[:10] %}
+            <li><h2>{{ item.get('电影天堂标题') }}</h2></li>
+            {% for img in item.get('海报大图') %}
+            <li><img src={{ img }}></li>
+            {% endfor%}
+        {% else %}
+            <li><em>Unbelievable. No entries here so far.</em></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
