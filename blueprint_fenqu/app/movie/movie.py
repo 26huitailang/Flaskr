@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, render_template, current_app, request
 from pymongo import MongoClient
 
 movie = Blueprint('movie', __name__,
@@ -18,6 +18,7 @@ def connect_db():
 def show_items():
     col = connect_db()
     items = col.find({})
+    print(request.cookies)
     return render_template('show_items.html', items=items)
 
 
