@@ -4,7 +4,7 @@ from . import app
 
 user = {'id': 123, 'nickname': '< IAMKING>'}
 tpl1 = '<h1>homepage of <a href="/user/{{id}}">{{nickname | e}}</a></h1>'
-# 递归循环
+# 递归循环，遍历friend_circle的friends
 tpl2 = '''
     <ul>
         {% for item in friend_circle recursive %}
