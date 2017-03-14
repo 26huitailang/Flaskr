@@ -1,18 +1,6 @@
 # coding: utf-8
 from flask import Flask, render_template, render_template_string
-from config import contacts
-import os
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-app.config.from_object('config')
-
-basedir = os.path.abspath(os.path.dirname(__file__))
-# 声明ORM底层所用数据库的访问URL
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-# 当关闭数据库连接时是否自动提交事务
-app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-db = SQLAlchemy(app)
+from . import app
 
 user = {'id': 123, 'nickname': '< IAMKING>'}
 tpl1 = '<h1>homepage of <a href="/user/{{id}}">{{nickname | e}}</a></h1>'
@@ -38,6 +26,36 @@ tpl3 = '''
         {% endfor %}
     </ul>
     '''
+
+contacts = [
+    {'name': 'linda', 'tel': '897123'},
+    {'name': 'mary', 'tel': '1928739'},
+    {'name': 'jack', 'tel': '9872314'},
+    {'name': 'tommy', 'tel': '9081233'},
+    {'name': 'jimi', 'tel': '5091234'},
+    {'name': 'obama', 'tel': '8782012'}
+]
+
+friend_circle = [{
+    'name': 'zhang3',
+    'friends': [
+        {
+            'name': 'li4',
+            'friends': [
+                {'name': 'wang5'},
+                {'name': 'zhao6'}
+            ]
+        },
+        {
+            'name': 'lin7',
+            'friends': [
+                {'name': 'wu8'},
+                {'name': 'he9'}
+            ]
+        }
+    ]
+}]
+
 
 
 @app.route('/string')
