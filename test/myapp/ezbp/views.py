@@ -57,7 +57,7 @@ friend_circle = [{
 }]
 
 @ezbp.route('/')
-def ezbp_index():
+def index():
     return render_template_string('''
     Welcome to my blueprint, <a href="{{ url_for('ezbp.hello') }}">hello</a>
     ''')
