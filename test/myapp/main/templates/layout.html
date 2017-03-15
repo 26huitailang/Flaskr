@@ -3,7 +3,7 @@
     <head>
         <title>Test</title>
         <meta name="viewpoint" content="width=decice-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='basic.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('main.static', filename='basic.css') }}">
     </head>
     <div class="page">
     {% for meesage in get_flashed_messages() %}
