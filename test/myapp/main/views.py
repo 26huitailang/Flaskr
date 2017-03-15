@@ -1,6 +1,6 @@
 # coding: utf-8
-from flask import Flask, render_template, render_template_string
-from . import app
+from flask import Flask, render_template, render_template_string, Blueprint
+from . import main
 
 user = {'id': 123, 'nickname': '< IAMKING>'}
 tpl1 = '<h1>homepage of <a href="/user/{{id}}">{{nickname | e}}</a></h1>'
@@ -57,16 +57,11 @@ friend_circle = [{
 }]
 
 
-
-@app.route('/string')
+@main.route('/string')
 def v_index():
     return render_template_string(tpl3, contacts=contacts)
 
 
-@app.route('/')
+@main.route('/')
 def index():
     return render_template('table.html', contacts=contacts)
-
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', port=8000, debug=True)
