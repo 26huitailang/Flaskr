@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from .main import main
 from .ezbp import ezbp
 from .vip import vip
+from .movie import movie
 
 db = SQLAlchemy()
 
@@ -25,6 +26,7 @@ def create_app():
     app.register_blueprint(main, url_prefix='/main')
     app.register_blueprint(ezbp, url_prefix='/ezbp')
     app.register_blueprint(vip, url_prefix='/vip')
+    app.register_blueprint(movie, url_prefix='/movie')
     return app
 
 from . import models
