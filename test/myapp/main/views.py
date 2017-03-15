@@ -57,11 +57,19 @@ friend_circle = [{
 }]
 
 
+@main.route('/')
+def index():
+    return render_template_string("""
+        <a href='{{ url_for('ezbp.index') }}'>ezbp</a>
+        <a href='{{ url_for('vip.index') }}'>vip</a>
+        """)
+
+
 @main.route('/string')
 def v_index():
     return render_template_string(tpl3, contacts=contacts)
 
 
-@main.route('/')
-def index():
+@main.route('/table')
+def table():
     return render_template('table.html', contacts=contacts)
