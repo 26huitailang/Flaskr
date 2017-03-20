@@ -16,9 +16,23 @@ def show_items():
     col = connect_db()
     items = col.find({})
     print(request.cookies)
-    return render_template('show_items.html', items=items)
+    return render_template('movie/show_items.html', items=items)
 
+@movie.route('/index')
+def index():
+    return render_template('movie/index.html')
 
+@movie.route('/carousel')
+def carousel():
+    return render_template('movie/carousel.html')
+
+@movie.route('/tabs')
+def tabs():
+    return render_template('movie/tabs.html')
+
+@movie.route('/books')
+def books():
+    return render_template('movie/books.html')
 # TODO buxiangkan
 
 # TODO yikan
