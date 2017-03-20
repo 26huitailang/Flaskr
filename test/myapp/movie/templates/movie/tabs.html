@@ -1,0 +1,123 @@
+{% extends "movie/index.html" %}
+{% block style %}
+    <style type="text/css">
+        .tab .nav-tabs {
+            border-bottom: 0 none;
+            background: #eaeaea;
+        }
+
+        .tab .nav-tabs li a {
+            background: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            border: none;
+            color: #333;
+            padding: 12px 22px;
+        }
+
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+            border: 0 none;
+            background: #e67e22;
+            color: #fff;
+        }
+
+        .tab .nav-tabs li.active a:after {
+            content: "";
+            position: absolute;
+            left: 45%;
+            bottom: -14px;
+            border: 7px solid transparent;
+            border-top: 7px solid #e67e22;
+        }
+
+        .tab .tab-content {
+            padding: 5px;
+            color: #5a5c5d;
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 5px;
+            border-bottom: 1px solid #e67e22;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .tab .nav-tabs, .tab .nav-tabs li {
+                width: 100%;
+                background: transparent;
+            }
+
+            .tab .nav-tabs li.active a {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .tab .nav-tabs li:first-child a {
+                border-bottom-left-radius: 0;
+            }
+
+            .tab .nav-tabs li a {
+                margin-bottom: 10px;
+                border: 1px solid lightgray;
+            }
+
+            .tab .nav-tabs li.active a:after {
+                border: none;
+            }
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="tab" role="tabpanel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" style="margin-top:0;" id="docTabs">
+                <li role="presentation" class="active"><a href="#Section_new"
+                                                          aria-controls="home" role="tab" data-toggle="tab"> 最新</a>
+                <li role="presentation"><a href="#Section_week"
+                                           aria-controls="profile" role="tab" data-toggle="tab">7天热门</a>
+                <li role="presentation"><a href="#Section_month"
+                                           aria-controls="messages" role="tab" data-toggle="tab">30天热门</a>
+            </ul>
+            <!-- Tab panes -->
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="Section_new">
+                    <P>
+                        tab1中的内容
+                    </P>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section_week">
+                    <P>
+                        tab2中的内容
+                    </P>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Section_month">
+                    <P>
+                        tab3中的内容
+                    </P>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript">
+        function timer(i) {
+            var interval = setInterval(function () {
+                $("#docTabs li:eq(" + i + ") a").tab('show');
+                i++;
+                if (i > 2)
+                    i = 0;
+            }, 5000);//为了演示需要，间隔时间改为2秒
+            return interval;
+        }
+        $(function () {
+            var i = 0;
+            interval = timer(i);
+            $(".tab-pane").mouseover(function () {
+                clearInterval(interval);
+            });
+            $(".tab-pane").mouseout(function () {
+                timer(i);
+            });
+        });
+    </script>
+{% endblock %}
