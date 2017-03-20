@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
-
 from flask import Flask
+# from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from .main import main
 from .ezbp import ezbp
@@ -9,7 +9,7 @@ from .vip import vip
 from .movie import movie
 
 db = SQLAlchemy()
-
+# bootstrap = Bootstrap()
 
 def create_app():
     app = Flask(__name__)
@@ -22,6 +22,7 @@ def create_app():
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
     db.init_app(app)
+    # bootstrap.init_app(app)
 
     app.register_blueprint(main, url_prefix='/main')
     app.register_blueprint(ezbp, url_prefix='/ezbp')
