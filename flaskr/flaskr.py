@@ -1,12 +1,16 @@
 # all the imports
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, Blueprint
+from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash, Blueprint, jsonify
 import sqlite3
 from contextlib import closing
+from faker import Faker
+import random
+from uuid import uuid4
 import os
 
 # create our little application :-)
 app = Flask(__name__)
 
+fake = Faker()
 
 # load default config and override config from an environment variable
 app.config.update(dict(
@@ -67,7 +71,7 @@ def add_entry():
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
-    db.execute('INSERT INTO entries (title, text) VALUES (?, ?)', # ? means args to putin
+    db.execute('INSERT INTO entries (title, text) VALUES (?, ?)',  # ? means args to putin
                [request.form['title'], request.form['text']])
     db.commit()
     flash('New entry was successfully posted')
@@ -94,6 +98,22 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+
+@app.route('/get_json_data')
+def get_json_data():
+    id_list = [n for n in range(5)]
+    tuple_list = [(n, fake.first_name()) for n in id_list]
+    return render_template('dropdown_sel.html', data=tuple_list)
+
+
+@app.route('/api/org_list')
+def get_org_list():
+    org_id = request.args.get('org_id')
+    if org_id == '1':
+        return jsonify({6: 'Peter', 7: 'Alex'})
+    else:
+        return jsonify({8: 'PEEEE', 9: 'Alllll'})
 
 
 if __name__ == '__main__':
